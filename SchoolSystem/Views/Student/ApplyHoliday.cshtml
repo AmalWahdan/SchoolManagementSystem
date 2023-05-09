@@ -1,0 +1,43 @@
+﻿@model SchoolSystem.ViewModels.HolidayViewModel
+
+@{
+    ViewData["Title"] = "ApplyHoliday";
+}
+
+<h1>Apply for Holiday</h1>
+
+<hr />
+<div class="row justify-content-center">
+
+    <div class="col-md-6 p-5 bg-white mt-5 ">
+        <form asp-action="ApplyHoliday">
+            
+            <div class="form-group">
+                <label asp-for="Reason" class="control-label"></label>
+                <input asp-for="Reason" class="form-control" />
+                <span asp-validation-for="Reason" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DaysNum" class="control-label"></label>
+                <input asp-for="DaysNum" class="form-control" />
+                <span asp-validation-for="DaysNum" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StartDate" class="control-label"></label>
+                <input asp-for="StartDate" class="form-control" />
+                <span asp-validation-for="StartDate" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Apply" class="btn btn-warning rounded" />
+            </div>
+            
+<div>
+    <a asp-action="ViewHolidays" class ="text-warning text-decoration-none"><i class="fa-solid fa-arrow-left-long ms-1"></i> Back </a>
+</div>
+        </form>
+    </div>
+
+</div>
+
+

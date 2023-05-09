@@ -1,0 +1,60 @@
+﻿@model SchoolSystem.ViewModels.RoleViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<section class="py-5 mb-5 ">
+    <div class="container h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-lg-10">
+                <div class="card text-black" style="border-radius: 25px;">
+                    <div class="card-body py-md-1">
+                        <div class="row justify-content-center py-4">
+                            <div class="col-md-10 col-lg-5 order-2 order-lg-1">
+                                <p class="text-center h1 fw-bold my-3  mx-md-4">Sign in</p>
+        
+                                <form asp-action="Create">
+                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                    <div class="form-group">
+                                        <label asp-for="RoleName" class="control-label"></label>
+                                        <input asp-for="RoleName" class="form-control" />
+                                        <span asp-validation-for="RoleName" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="submit" value="Create" class="btn btn-dark my-4 form-control" />
+                                    </div>
+                                </form>
+
+
+                            </div>
+                            <div class="col-md-10 col-lg-6  d-flex align-items-center order-1 order-lg-2">
+                                <img src="https://static.vecteezy.com/system/resources/previews/010/925/676/non_2x/online-registration-and-sign-up-concept-young-man-signing-up-or-login-to-online-account-on-smartphone-app-user-interface-secure-login-and-password-vector.jpg"
+                                     class="img-fluid" alt="Sample image">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,72 @@
+﻿@model SelectStudentsViewModel
+@{
+    SelectList levels = new SelectList(Model.levels, "Id", "Name");
+}
+
+
+
+
+<div class="container">
+    <div class="row  justify-content-center">
+        <div class="col-md-4 mb-3">
+                <label asp-for="LevelId">Levels</label>
+            <select asp-for="LevelId" class="form-select w-100 p-2 mb-4 border border-info rounded" asp-items="levels" onchange="GetLevelClasses()">
+                    <option value="0">-- Select Level --</option>
+                </select>
+
+            <label asp-for="ClassId">Classes</label>
+            <Select class="form-select w-100 p-2 mb-4 border border-info rounded" asp-for="ClassId">
+             </Select>
+
+           
+            <label for="Date">Date</label>
+            <input id="Date" class="form-select w-100 p-2 mb-2 border border-info rounded" type="date" max="@DateTime.Now.ToString("yyyy-MM-dd")" onchange="GetStudents()" />
+
+
+         </div>
+    </div>
+    <div class="row  justify-content-center">
+        <div class="col-lg-10 mb-3">
+            <div id="partialViewContainer">
+            </div>
+        </div>
+    </div>
+       
+  
+</div>
+
+@section Scripts{
+    <script src="/lib/jquery/dist/jquery.min.js">
+    </script>
+    <script>
+        function GetLevelClasses() {
+            var levelID = $("#LevelId").val();
+            $("#ClassId").html("");
+            $.ajax({
+                url: "/Teacher/GetClassessByLevelID",
+                data: { "id": levelID },
+                success: function (result) {
+                    $("#ClassId").append("<option value='0'>--Select Class--</option>");
+                    for (let item of result) {
+                        $("#ClassId").append("<option value=" + item.id + ">" + item.name + "</option>")
+                        
+                    }
+
+                }
+            });
+        }
+
+        function GetStudents() {
+            var classId = $("#ClassId").val();
+            var levelId = $("#LevelId").val();
+            var date = $("#Date").val();
+            var url = '/Teacher/AttendanceList?' + 'levelId=' + levelId + '&classId=' + classId + '&date=' + date;
+
+            $("#partialViewContainer").load(url);
+        }
+
+    </script>
+
+    
+}
+

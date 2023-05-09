@@ -1,0 +1,54 @@
+﻿@model List<ApplicationUser>
+
+<table class ="table bg-white table-hover ">
+    <thead style="background-color : #003049 " class="text-white">
+            <tr>
+                
+                <th scope="col">Image</th>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">PhoneNumber</th>
+                <th scope="col">BirthDate</th>
+                <th scope="col" class="pe-3">Gender</th>
+                <th scope="col"></th>
+
+            @if (User.Identity.IsAuthenticated == true && User.IsInRole("Admin"))
+            {
+                <th scope="col"></th>
+            }
+
+            </tr>
+    </thead>
+        <tbody>
+            @foreach (var student in Model)
+            {
+                <tr>
+
+                <td><img class="rounded-circle" witdth="100px" height="50px" src="/Images/@student.photoUrl" /></td>
+                    <td>@student.Name</td>
+                    <td>@student.Email</td>
+                    <td>@student.PhoneNumber</td>
+                    <td>@student.BirthDate</td>
+                    <td>@student.Gender</td>
+                    <th>
+                     @if(User.Identity.IsAuthenticated==true && User.IsInRole("Admin")){
+                    <a  class="btn btn-warning" asp-action="EditStudent" asp-controller="Admin" asp-route-id="@student.Id" ><i class="fa-solid fa-pen-to-square"></i></a>
+                        <a class="btn btn-warning" asp-action="DeleteStudent" asp-controller="Admin" asp-route-id="@student.Id" onclick="return confirmDelete();"><i class="fa-solid fa-trash-can"></i></a>
+                        }
+                    </th>
+                </tr>
+            }
+        </tbody>
+    </table>
+    
+    
+    <script>
+    function confirmDelete() {
+    var result = confirm("Are you sure you want to delete");
+    if (result) {
+        return true;
+    } else {
+        return false;
+    }
+}
+</script>

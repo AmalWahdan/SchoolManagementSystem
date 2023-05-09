@@ -1,0 +1,54 @@
+﻿@model IEnumerable<SchoolSystem.Models.Holiday>
+
+@{
+    ViewData["Title"] = "ViewHolidays";
+}
+
+<h1>Holidays</h1>
+
+<p>
+    <a asp-action="ApplyHoliday" class="btn btn-warning rounded"> Ask For Holiday </a>
+</p>
+<div class="justify-content-center">
+<table class="table bg-white table-hover">
+        <thead style="background : #003049 " class="text-white">
+        <tr>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.Reason)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.DaysNum)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.StartDate)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Reason)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DaysNum)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                    <a asp-action="EditHoliday" asp-route-id="@item.Id" class="btn btn-warning ms-2"><i class="fa-solid fa-pen-to-square"></i></a>
+                    <a asp-action="DeleteHoliday" asp-route-id="@item.Id" class="btn btn-warning" onclick="return confirm('Are you sure you want to delete?');"><i class="fa-solid fa-trash-can"></i></a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+</div>

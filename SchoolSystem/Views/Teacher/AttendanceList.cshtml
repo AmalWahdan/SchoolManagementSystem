@@ -1,0 +1,36 @@
+﻿@model List<StudentAttendanceViewModel>
+
+
+<table class ="table bg-white table-hover "> 
+ <h2 class="text-uppercase"> StudentNo  @Model.Count()</h2>
+    <thead style="background-color : #003049 " class="text-white">
+        <tr>
+
+            <th scope="col">Image</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">PhoneNumber</th>
+            <th scope="col">Gender</th>
+            <th scope="col">Status</th>
+
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var studentAttendance in Model)
+        {
+            <tr>
+                <td><img class="rounded-circle" witdth="100px" height="50px" src="/Images/@studentAttendance.Student.photoUrl" /></td>
+                <td>@studentAttendance.Student.Name</td>
+                <td>@studentAttendance.Student.Email</td>
+                <td>@studentAttendance.Student.PhoneNumber</td>
+                
+                <td>@studentAttendance.Student.Gender</td>
+                <td>@studentAttendance.AttendanceStatus</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+

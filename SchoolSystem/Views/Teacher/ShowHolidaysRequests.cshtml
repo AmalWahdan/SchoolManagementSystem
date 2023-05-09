@@ -1,0 +1,49 @@
+﻿@model List<Holiday>
+
+@{
+    ViewData["Title"] = "ShowHolidays";
+ 
+}
+
+<h1 class=" text-uppercase">Holidays Requests</h1>
+<hr />
+<table class="table bg-white table-hover">
+    <thead style="background : #003049 " class="text-white">
+        <tr>
+
+            <th scope="col">Id</th>
+            <th scope="col">StudentName</th>
+            <th scope="col">Reason</th>
+            <th scope="col">Days</th>
+            <th scope="col">StartDate</th>
+            <th scope="col">State</th>
+            <th scope="col"></th>
+            
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var holiday in Model)
+        {
+            @if (holiday.Status == 0)
+            {
+                <tr>
+                <td>@holiday.Id</td>
+                <td>@holiday.ApplicationUser.Name</td>
+                <td>@holiday.Reason</td>
+                <td>@holiday.DaysNum</td>
+                <td>@holiday.StartDate</td>
+                <td>@holiday.Status</td>
+                <td>
+                <a class="btn text-warning ms-2"  asp-action="HolidayRequestResponse" asp-controller="Teacher" asp-route-id="@holiday.Id" asp-route-status="2"><i class="fa-solid fa-circle-check fs-1"></i></a>
+                <a class="btn text-warning" asp-action="HolidayRequestResponse" asp-controller="Teacher" asp-route-id="@holiday.Id" asp-route-status="1"><i class="fa-solid fa-circle-xmark fs-5"></i></a>
+                </td>
+
+            </tr>
+  }      }
+    </tbody>
+</table>
+
+
+
+

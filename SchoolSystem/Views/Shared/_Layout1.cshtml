@@ -1,0 +1,256 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@inject UserManager<ApplicationUser> _userManager
+@{
+    var applicationUser = await _userManager.GetUserAsync(User);
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    @*
+    #FF9203
+    #ff3ca6*@
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>Etrain</title>
+    <link rel="icon" href="/assets/home/img/favicon.png">
+    <link rel="stylesheet" href="/assets/vendors/mdi/css/materialdesignicons.min.css" />
+    <link rel="stylesheet" href="/assets/vendors/flag-icon-css/css/flag-icon.min.css" />
+    <link rel="stylesheet" href="/assets/vendors/css/vendor.bundle.base.css" />
+    <link rel="stylesheet" href="/assets/vendors/font-awesome/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="/assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+</head>
+<body>
+    <div class="container-scroller">
+        <nav class="sidebar " id="sidebar">
+            <div style="background-color:#fff; height:100%">
+            <div class="text-center sidebar-brand-wrapper d-flex align-items-center mb-5">
+                    <a class="sidebar-brand brand-logo" asp-action="Index" asp-controller="Home"><img src="/assets/home/img/logo.png" alt="logo" /></a>
+
+                    <a class="sidebar-brand brand-logo-mini pl-4 pt-3" asp-action="Index" asp-controller="Home"><img src="/assets/home/img/favicon.png" alt="logo" /></a>
+
+            </div>
+            <ul class="nav">
+                @if (User.Identity.IsAuthenticated == true && User.IsInRole("Admin"))
+                {
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Admin" asp-action="AddTeacher">
+                            <i class="mdi mdi-home menu-icon"></i>
+                            <span class="menu-title">Teacher</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Admin" asp-action="AddStudent">
+                            <i class="mdi mdi-home menu-icon"></i>
+                            <span class="menu-title">Student</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Admin" asp-action="AddClass">
+                            <i class="mdi mdi-home menu-icon"></i>
+                            <span class="menu-title">Classe</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Admin" asp-action="AddLevel">
+                            <i class="mdi mdi-home menu-icon"></i>
+                            <span class="menu-title">Levels</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Admin" asp-action="Feedback">
+                            <i class="mdi mdi-home menu-icon"></i>
+                            <span class="menu-title">Feedbacks</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                            <a class="nav-link" asp-controller="Teacher" asp-action="StudentsReports">
+                            <i class="mdi mdi-home menu-icon"></i>
+                            <span class="menu-title">Students Reports</span>
+                        </a>
+                    </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Teacher" asp-action="ShowHolidaysRequests">
+                                <i class="mdi mdi-home menu-icon"></i>
+                                <span class="menu-title">Holidays</span>
+                            </a>
+                        </li>
+                }
+                @if (User.Identity.IsAuthenticated == true && User.IsInRole("Teacher"))
+                {
+                   
+                    <li class="nav-item">
+                            <a class="nav-link" asp-controller="Teacher" asp-action="AttendancePage">
+                            <i class="mdi mdi-home menu-icon"></i>
+                            <span class="menu-title">Take Attendance</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                            <a class="nav-link" asp-controller="Teacher" asp-action="AttendanceListLevels">
+                                <i class="fa-solid fa-clipboard-user menu-icon"></i>
+                            <span class="menu-title">View Attendance</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                            <a class="nav-link" asp-controller="Teacher" asp-action="StudentsReports">
+                                <i class="fa-solid fa-comments menu-icon"></i>
+                            <span class="menu-title">Students Report</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                            <a class="nav-link" asp-controller="Teacher" asp-action="ShowHolidaysRequests">
+                           <i class="fa-solid fa-wand-sparkles menu-icon"></i>
+                            <span class="menu-title">Holidays</span>
+                        </a>
+                    </li>
+                    
+                }
+                @if (User.Identity.IsAuthenticated == true && User.IsInRole("Student"))
+                {
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Student" asp-action="Index">
+                                <i class="fa-solid fa-user menu-icon"></i>
+                                <span class="menu-title">Profile</span>
+                            </a>
+                        </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Student" asp-action="AttendanceReportMonth">
+                                <i class="fa-solid fa-clipboard-user menu-icon"></i>
+                            <span class="menu-title">Attendance</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Student" asp-action="ViewHolidays">
+                                <i class="fa-solid fa-wand-sparkles menu-icon"></i>
+                            <span class="menu-title">Holiday</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Student" asp-action="ViewFeedbacks">
+                                <i class="fa-solid fa-comments menu-icon"></i>
+                            <span class="menu-title">Feedback</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Student" asp-action="UpdateProfile">
+                                <i class="fa-solid fa-pen-to-square menu-icon"></i>
+                            <span class="menu-title">Update Profile</span>
+                        </a>
+                    </li>
+                }
+				<li class="mt-2 nav-item">
+                        <a class=" nav-link" asp-controller="Account" asp-action="Logout">
+						<i class="mdi mdi-logout menu-icon"></i>
+                        <span class="menu-title">Sign Out</span>
+					</a>
+				</li>
+
+                                
+            </ul>
+            </div>
+        </nav>
+        <div class="container-fluid page-body-wrapper">
+          
+            <nav class="navbar col-lg-12 col-12 p-lg-0 fixed-top d-flex flex-row" >
+                <div class="navbar-menu-wrapper d-flex align-items-stretch justify-content-around" style="background-color: #fefae0;">
+                    <button class="navbar-toggler navbar-toggler  align-self-center mr-2" type="button"  data-toggle="minimize">
+                        <i class="mdi mdi-menu"></i>
+                    </button>
+                    <ul class="navbar-nav navbar-nav-right ml-lg-auto">
+                        <li class="nav-item nav-profile dropdown border-0">
+                            <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-toggle="dropdown">
+                                @*<img class="nav-profile-img mr-2" src="/Images/@User.Claims.FirstOrDefault(c=>c.Type=="photoUrl")" />*@
+                                @if (User.Identity.IsAuthenticated == true && User.IsInRole("Admin"))
+                                {
+                                    <img class="nav-profile-img mr-2" src="/Images/@applicationUser.photoUrl" />
+                                    <span class="profile-name text-dark">@applicationUser.UserName</span>
+                                }
+                                else if (User.Identity.IsAuthenticated == true && User.IsInRole("Teacher"))
+                                {
+                                    <img class="nav-profile-img mr-2" src="/Images/@applicationUser.photoUrl" />
+                                    <span class="profile-name text-dark">@applicationUser.UserName</span>
+                                }
+                                else if (User.Identity.IsAuthenticated == true && User.IsInRole("Student"))
+                                {
+                                    <img class="nav-profile-img mr-2" src="/Images/@applicationUser.photoUrl" />
+                                    <span class="profile-name text-dark">@applicationUser.UserName</span>
+                                }
+
+                            </a>
+                    
+                          
+                                <div class="dropdown-menu navbar-dropdown w-100" aria-labelledby="profileDropdown">
+                                     @if (User.Identity.IsAuthenticated == true && User.IsInRole("Student"))
+                                     {
+                                        <a class="dropdown-item" asp-controller="Student" asp-action="Index">
+                                            <i class="fa-solid fa-user mr-2 text-warning"></i>Profile
+
+                                        </a>
+                                        <a class="dropdown-item" asp-controller="Student" asp-action="UpdateProfile">
+                                        <i class="fa-solid fa-pen-to-square mr-2 text-warning"></i>Update
+
+                                        </a>
+                                    }
+                                else if (User.Identity.IsAuthenticated == true && User.IsInRole("Teacher"))
+                                {
+                                    <a class="dropdown-item" asp-controller="Teacher" asp-action="Index">
+                                        <i class="fa-solid fa-user mr-2 text-warning"></i>Profile
+
+                                    </a>
+                                    <a class="dropdown-item" asp-controller="Teacher" asp-action="UpdateTeacher">
+                                        <i class="fa-solid fa-user mr-2 text-warning"></i>Update
+
+                                    </a>
+
+                                }
+                                <a class="dropdown-item" asp-controller="Account" asp-action="Logout">
+                                        <i class="mdi mdi-logout mr-2 text-warning"></i> Signout
+                                    </a>
+                                </div>
+                            
+                        </li>
+                    </ul>
+                    
+                </div>
+            </nav>
+            <div class="main-panel">
+                <div class="content-wrapper pb-5 " style="background-color:#fefae0;">
+                    @RenderBody()
+                    
+                </div>
+            </div>
+            <!-- main-panel ends -->
+        </div>
+        
+        <!-- page-body-wrapper ends -->
+    </div>
+
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+    <script src="/assets/vendors/js/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page -->
+    <script src="/assets/vendors/chart.js/Chart.min.js"></script>
+    <script src="/assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+    <script src="/assets/vendors/flot/jquery.flot.js"></script>
+    <script src="/assets/vendors/flot/jquery.flot.resize.js"></script>
+    <script src="/assets/vendors/flot/jquery.flot.categories.js"></script>
+    <script src="/assets/vendors/flot/jquery.flot.fillbetween.js"></script>
+    <script src="/assets/vendors/flot/jquery.flot.stack.js"></script>
+    <script src="/assets/vendors/flot/jquery.flot.pie.js"></script>
+    <!-- End plugin js for this page -->
+    <!-- inject:js -->
+    <script src="/assets/js/off-canvas.js"></script>
+    <script src="/assets/js/hoverable-collapse.js"></script>
+    <script src="/assets/js/misc.js"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page -->
+    <script src="/assets/js/dashboard.js"></script>
+    <script src="https://kit.fontawesome.com/943ac315ae.js" crossorigin="anonymous"></script>
+        @await RenderSectionAsync("Scripts", required: false)
+    @await  RenderSectionAsync("Styles",required: false)
+    <!-- End custom js for this page -->
+</body>
+</html>

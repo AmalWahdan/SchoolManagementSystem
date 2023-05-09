@@ -1,0 +1,99 @@
+﻿<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <script defer src="../js/js.js"></script>
+    <!--  CSS -->
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>learning platform</title>
+</head>
+
+<body>
+
+
+    @*<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <img src="../assets/imgs/جامعة المنوفية.png" class="mr-4" alt="logo" width="60px" height="100%" />
+        <a class="navbar-brand" href="#">Learning platform</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-center" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item text-center active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item text-center mx-2">
+                    <a class="nav-link" href="#">Standard</a>
+                </li>
+                <li class="nav-item text-center mx-2">
+                    <a class="nav-link" href="#">Staff</a>
+                </li>
+                <li class="nav-item text-center mx-2">
+                    <a class="nav-link" href="#">Feedback</a>
+                </li>
+                <li class="nav-item text-center mx-2">
+                    <a class="nav-link" href="#">Admin panel</a>
+                </li>
+                <li class="nav-item text-center mx-2">
+                    <a class="nav-link" href="#">Contact us</a>
+                </li>
+
+            </ul>
+        </div>
+    </nav>
+*@
+    <div class="container-fluid">
+        <div class="row">
+            <div id="show" class="h-100 col-lg-3 col-md-4 text-center p-0 overflow-hidden d-md-block text-white border-right col-sm-12">
+                <nav class="nav navbar-expand-md navbar-light bg-light">
+                    <button class="navbar-toggler w-100" type="button" data-toggle="collapse" data-target="#navbarNavDropdown2" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span> Panel
+                    </button>
+                    <div class="collapse navbar-collapse justify-content-center" id="navbarNavDropdown2">
+                        <!-- import your sidebar here (sidebar.forms.html,admin.sidebar.html,stuff.sidebar.html) -->
+
+                        <div class="list-group text-center flex-column w-100 shadow border border-primary">
+                            <h3 class="py-3 alert-primary m-0">Admin panel</h3>
+                            <a href="#" class="list-group-item list-group-item-action">Add standard </a>
+                            <a href="#" class="list-group-item list-group-item-action">Add division</a>
+                            <a href="#" class="list-group-item list-group-item-action">Add stuff</a>
+                            <a href="#" class="list-group-item list-group-item-action">Stuff report</a>
+                            <a href="#" class="list-group-item list-group-item-action">Complain</a>
+                            <a href="#" class="list-group-item list-group-item-action">Leave</a>
+                            <a href="#" class="list-group-item list-group-item-action">Student reports</a>
+                            <a href="#" class="list-group-item list-group-item-action">Feedback</a>
+                            <a href="#" class="list-group-item list-group-item-action">Log out</a>
+                        </div>
+                        <!-- end of side bar importing -->
+                    </div>
+                </nav>
+
+            </div>
+            <div class="col-lg-9 col-md-8 col-sm-12 justify-content-center">
+                <div id="content" class="container text-center col-12 overflow-auto">
+                    <!-- content .... import content here(homepage.html,feedback.html,adminlogin.html and any component)-->
+                    @RenderBody();
+                    <!-- end content -->
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="../js/jquery.slim.js"></script>
+    <script src="../js/bootstrap.bundle.min.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+
+</body>
+
+</html>

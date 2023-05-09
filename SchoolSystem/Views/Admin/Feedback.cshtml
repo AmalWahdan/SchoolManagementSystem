@@ -1,0 +1,75 @@
+﻿@model List<FeedbackVM>
+@{
+    int i = 0;
+    ViewData["Title"] = "Feedback";
+    //Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="row justify-content-center">
+    <div class="col-md-6 col-lg-10 bg-white p-5">
+    <h3 class=" my-3  " style=" color:#262A56">Complains Report</h3>
+    
+
+    <form method="post" asp-action="Feedback">
+        <div class="row my-3">
+                <table class="table bg-white table-hover ">
+                    <thead style="background : #003049 " class="text-white">
+                    <tr>
+
+                        <th scope="col border">#</th>
+                        <th scope="col border">Student name</th>
+                        <th scope="col border">Complain</th>
+                        <th scope="col border">Reply</th>
+                        <th scope="col border"></th>
+
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <!-- row for loop -->
+                    @foreach (var item in Model)
+                    {
+                        i++;
+                        <tr>
+                            <td  scope="row">
+                                @i
+                            </td>
+                            <td  scope="row">
+                                @item.StudentName
+                            </td>
+                            
+                            <td  scope="row">
+                                @item.FeedbackText
+                            </td>
+                            <td  scope="row">
+                               @{
+                                   if (item.Response== null)
+                                    {
+                                        <span id="status">pending</span>
+                                    }
+                                    else
+                                    {
+                                        <span id="status">@item.Response</span>
+                                    }
+                                }
+                                <div id="reply" style="display:none;">
+                                    <textarea class="form-control btn-outline-danger" name="" cols="30" rows="3" style="resize: none;"></textarea>
+                                    <button class="btn btn-warning my-2" value="" name="">Send reply</button>
+                                </div>
+                            </td>
+                            <td scope="row">
+                                <a id="btnReply" class="btn btn-warning" href="/Admin/Reply/@item.Id">Reply</a>
+                            </td>
+
+                        </tr>
+                    }
+                    <!-- end of row -->
+                </tbody>
+            </table>
+
+        </div>
+        
+    </form>
+</div>
+

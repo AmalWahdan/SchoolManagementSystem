@@ -1,0 +1,65 @@
+﻿@model SchoolSystem.ViewModels.TeacherViewModel
+
+@{
+    ViewData["Title"] = "UpdateTeacher";
+}
+
+<h1 class=" text-uppercase" >update Profile</h1>
+<hr />
+<div class="row justify-content-center ">
+    <div class="col-md-6 col-lg-8 bg-white p-5 rounded">
+        <form asp-action="UpdateTeacher" enctype="multipart/form-data"  method="post">
+            
+            <div class="form-group text-center">
+                <img id="img" class="rounded-circle" src="/Images/@Model.Filename" />
+            </div>
+            <span asp-validation-for="Photo" class="text-danger"></span>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserName" class="control-label"></label>
+                <input asp-for="UserName" class="form-control" />
+                <span asp-validation-for="UserName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Address" class="control-label"></label>
+                <input asp-for="Address" class="form-control" />
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Phone" class="control-label"></label>
+                <input asp-for="Phone" class="form-control" />
+                <span asp-validation-for="Phone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BirthDate" class="control-label"></label>
+                <input asp-for="BirthDate" class="form-control" />
+                <span asp-validation-for="BirthDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input class="form-control " type="file" id="DefaultFile" asp-for="Photo" placeholder="Upload Image">
+            </div>
+        
+            <div class="form-group text-center">
+                <input type="submit" value="Save" class="btn btn-warning rounded form-control w-50 " />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

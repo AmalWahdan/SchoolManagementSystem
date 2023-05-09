@@ -1,0 +1,95 @@
+﻿@model SchoolSystem.ViewModels.LoginVM
+@{
+    Layout = "_HomeLayout";
+}
+<div style="height: 100px">
+
+</div>
+<section class="py-5 my                                                                                                                     -5 " >
+    <div class="container h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-lg-10">
+                <div class="card text-black" style="border-radius: 25px;">
+                    <div class="card-body py-md-1">
+                        <div class="row justify-content-center py-4">
+                            <div class="col-md-10 col-lg-5 order-2 order-lg-1">
+                                <p class="text-center h1 fw-bold my-3  mx-md-4">Sign in</p>
+                                <form asp-action="Login">
+                                    <div class="form-group">
+                                        <label asp-for="UserName" class="control-label"></label>
+                                        <input asp-for="UserName" class="form-control" />
+                                        <span asp-validation-for="UserName" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="Password" class="control-label"></label>
+                                        <input asp-for="Password" class="form-control" />
+                                        <span asp-validation-for="Password" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group form-check">
+                                        <label class="form-check-label">
+                                            <input class="form-check-input" asp-for="RememberMe" /> @Html.DisplayNameFor(model => model.RememberMe)
+                                        </label>
+                                    </div>
+                                    <div class="form-group">
+                                        <div asp-validation-summary="All" class="text-danger"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="submit" value="Login" class="btn btn-dark my-4 form-control" />
+                                    </div>
+
+
+                                </form>
+
+                            </div>
+                            <div class="col-md-10 col-lg-6  d-flex align-items-center order-1 order-lg-2">
+                                <img src="~/Images/login2.jpg"
+                                     class="img-fluid" alt="Sample image">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*
+<div>
+    <a asp-action="Index"> </a>
+</div>*@
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

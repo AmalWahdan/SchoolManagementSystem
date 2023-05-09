@@ -1,0 +1,211 @@
+﻿@model SchoolSystem.ViewModels.StudentIndexViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+<section>
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="card mb-5">
+                <div class="card-body text-center">
+                    <img src="/Images/@Model.Photo" alt="avatar"
+                         class="rounded-circle img-fluid" style="width: 150px;">
+                    <h5 class="my-3">@Model.Name</h5>
+                    @if (Model.ClassName!=null)
+                    {
+                        <p class="text-muted mb-1">@Model.ClassName</p>
+                    }
+                    @if (Model.LevelName != null)
+                    {
+                        <p class="text-muted mb-1">@Model.LevelName</p>
+                    }
+                    
+                </div>
+            </div>
+            <div class="card mb-5">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <p class="mb-0">Full Name</p>
+                        </div>
+                        <div class="col-sm-9">
+                            <p class="text-muted mb-0">@Model.Name</p>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <p class="mb-0">Email</p>
+                        </div>
+                        <div class="col-sm-9">
+                            <p class="text-muted mb-0">@Model.Email</p>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <p class="mb-0">Phone</p>
+                        </div>
+                        <div class="col-sm-9">
+                            <p class="text-muted mb-0">@Model.Photo</p>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <p class="mb-0">Birthday</p>
+                        </div>
+                        <div class="col-sm-9">
+                            <p class="text-muted mb-0">@Model.Birthday.Date</p>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <p class="mb-0">Address</p>
+                        </div>
+                        <div class="col-sm-9">
+                            <p class="text-muted mb-0">@Model.Address</p>
+                        </div>
+                    </div>
+                </div>
+            </div>  
+        </div>
+        <div class="col-lg-8">
+            <div class="card mb-4 mb-lg-0  p-5">
+                <div class="card-body p-0">
+                    <h2 class="text-center">Attendance</h2>
+
+                    <table class="table text-center bg-white table-hover">
+                        <thead style="background : #003049 " class="text-white">
+                            <tr>
+                                <th scope="col">
+                                    Attendance Status
+                                </th>
+                                <th scope="col">
+                                    Date
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.Attendances)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.AttendanceStatus)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Date)
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="card mb-4 mt-4 mb-lg-0  p-5">
+                <div class="card-body p-0">
+                    @if (Model.Holidays.Count == 0)
+                    {
+                        <div class="text-center">
+                            <h2 class="text-center">You haven't Applied for any holidays!</h2>
+                            <a asp-action="ApplyHoliday" class="text-warning text-center text-decoration-none">Apply for holiday</a>
+                        </div>
+                    }
+                    else
+                    {
+                        <h2 class="text-center">Holidays</h2>
+                        <table class="table bg-white table-hover">
+                            <thead style="background : #003049 " class="text-white">
+                                <tr>
+                                    <th scope="col">
+                                        Reason
+                                    </th>
+                                    <th scope="col">
+                                        Number of Days
+                                    </th>
+                                    <th scope="col">
+                                        Start Date
+                                    </th>
+                                    <th scope="col">
+                                        Status
+                                    </th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.Holidays)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Reason)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.DaysNum)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.StartDate)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Status)
+                                        </td>
+
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    }
+                </div>
+            </div>
+            <div class="card mb-4 mt-4 mb-lg-0  p-5">
+                <div class="card-body p-0">
+                    @if (Model.Feedbacks.Count == 0)
+                    {
+                        <div class="text-center">
+                            <h2 class="text-center">You haven't send any feedbacks!</h2>
+                            <a asp-action="SendFeedback" class="text-warning text-center text-decoration-none">Send Feedback</a>
+                        </div>
+                    }
+                    else
+                    {
+                        <h2 class="text-center">FeedBacks</h2>
+                        <table class="table bg-white text-center table-hover">
+                            <thead style="background : #003049 " class="text-white">
+                                <tr>
+                                    <th>
+                                        FeedBack
+                                    </th>
+                                    <th>
+                                        Response
+                                    </th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.Feedbacks)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.FeedbackText)
+                                        </td>
+                                        <td>
+                                            @if (item.Response!=null)
+                                            {
+                                                @Html.DisplayFor(modelItem => item.Response)
+                                            }
+                                            else
+                                            {
+                                                <text>-</text>
+                                            }
+                                        </td>
+
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

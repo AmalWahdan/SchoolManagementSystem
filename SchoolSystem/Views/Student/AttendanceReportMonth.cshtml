@@ -1,0 +1,50 @@
+﻿@{
+    ViewData["Title"] = "AttendanceReportMonth";
+}
+
+<h1>Attendance Report</h1>
+
+<hr />
+<div class="container ">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form >
+                <div class="form-group justify-content-center">
+                    <h4 class="text-center text-uppercase">Select Month </h4>
+                    <select class="form-select w-100 p-2  border border-info rounded" onchange="GetData()" id="month" name="month">
+                        <option value="1">Jan</option>
+                        <option value="2">Feb</option>
+                        <option value="3">March</option>
+                        <option value="4">April</option>
+                        <option value="5">May</option>
+                        <option value="6">Jun</option>
+                        <option value="7">July</option>
+                        <option value="8">Aug</option>
+                        <option value="9">Sept</option>
+                        <option value="10">Oct</option>
+                        <option value="11">Nov</option>
+                        <option value="12">Dec</option>
+                    </select>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-md-6 " id="partial">
+   
+        </div>
+    </div>
+
+</div>
+<script>
+    function GetData() {
+        month = $("#month").Value
+        event.preventDefault()
+        $.ajax({
+            url: "AttendanceReport/" +month,
+            success: function (res) {
+                $("#partial").html(res);
+            }
+        });
+    }
+</script>

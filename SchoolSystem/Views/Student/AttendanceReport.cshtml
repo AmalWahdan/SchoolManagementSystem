@@ -1,0 +1,36 @@
+﻿@model IEnumerable<SchoolSystem.Models.Attendance>
+
+@{
+    ViewData["Title"] = "AttendanceReport";
+}
+
+            <table class="table bg-white table-hover text-center">
+                <thead style="background : #003049 " class="text-white">
+                    <tr>
+                        <th scope="col" >
+                            @Html.DisplayNameFor(model => model.AttendanceStatus)
+                        </th>
+            <th scope="col">
+                            @Html.DisplayNameFor(model => model.Date)
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.AttendanceStatus)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Date)
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+
+
+
+
